@@ -18,8 +18,8 @@ public class QuoteConfiguration {
 	}
 
 	@Bean
-	public QuoteClient quoteClient(Jaxb2Marshaller marshaller) {
-		QuoteClient client = new QuoteClient();
+	public SoapClient quoteClient(Jaxb2Marshaller marshaller) {
+		SoapClient client = new SoapClient();
 		client.setDefaultUri("http://www.webservicex.com/stockquote.asmx");
 		client.setMarshaller(marshaller);
 		client.setUnmarshaller(marshaller);

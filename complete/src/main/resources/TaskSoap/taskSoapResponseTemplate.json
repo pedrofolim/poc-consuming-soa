@@ -1,0 +1,1 @@
+{"type":"object","id":"urn:jsonschema:hello:wsdl:GetQuoteResponse","properties":{"GetQuoteResult":{"type":"string"}}}
