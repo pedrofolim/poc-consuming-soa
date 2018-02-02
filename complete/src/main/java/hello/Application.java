@@ -61,6 +61,8 @@ public class Application {
 	CommandLineRunner lookup(SoapClient soapClient) {
 		return args -> {
 			
+			JSONParser parser = new JSONParser();
+			
 			//urls
 			String wsdl = "http://www.webservicex.com/stockquote.asmx";
 			String callback = "http://www.webserviceX.NET/GetQuote";
@@ -68,15 +70,27 @@ public class Application {
 			//context flow
 			FlowContext context = new FlowContext();
 			context.getSteps().add(new Step("Obter Stoque","MSFT"));
-						
-			//convert json to Object
+					
+			//Carrega arquivo json input
+			Object teste = parser.parse(new FileReader(
+                    "/Users/folim/workspace/sysmap/pocs/gs-consuming-web-service/complete/src/main/resources/TaskSoap/taskSoapRequestTemplate.json"));
+		
+			//realizar data mapping
+			
+			//convert json para Object
 			ObjectMapper mapper = new ObjectMapper();
 			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			JaxbAnnotationModule module = new JaxbAnnotationModule();
 			mapper.registerModule(module);
 			GetQuote request = mapper.readValue(new File("/Users/folim/workspace/sysmap/pocs/gs-consuming-web-service/complete/src/main/resources/TaskSoap/taskSoapRequestTemplate.json"), GetQuote.class);
 			request.setSymbol("MSFT");
+			
+			//chama serviço
 			String response = soapClient.call(wsdl, callback, request);
+			
+			//transforma response em json
+			
+			//realiza data mapping de saida
 			
 			System.err.println(response);
 		};
