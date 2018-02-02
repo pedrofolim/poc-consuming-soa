@@ -6,31 +6,16 @@
 			"key":"68914765-325c-7079-ec98-6e4c8708663e",
 			"sourcePort":
 				{
-					"path":"NotificarEventoOrdemCompraRequest.evento.contexto.contexto-negociacao.ordem-compra.operacao.categoria.categoria-id",
+					"path":"$.steps[0].content",
 					 "x":74.6875,
 					 "y":13
 				},
 			"targetPort":
 				{
-					"path":"pessoa.endereco.cidade",
+					"path":"$.properties.symbol",
 					"x":0,
 					"y":13
 			}
-		},
-		{
-			"key":"940e69e4-21ac-5784-6e6d-babb2d8602e4",
-			"sourcePort":
-				{
-					"path":"NotificarEventoOrdemCompraRequest.evento.contexto.contexto-negociacao",
-					"x":122.734375,
-					"y":13
-				},
-			"targetPort":
-				{
-					"path":"pessoa.nome",
-					"x":0,
-					"y":13
-				}
-			}
+		}
 	]
 }
