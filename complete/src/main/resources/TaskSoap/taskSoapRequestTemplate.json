@@ -1,1 +1,32 @@
-{"type":"object","id":"urn:jsonschema:hello:wsdl:GetQuote","properties":{"symbol":{"type":"string"}}}
+{
+   "assinante" : {
+      "oms-assinante-id" : null,
+      "nome" : "nome",
+      "subtipo-assinatura" : null,
+      "data-ativacao" : null,
+      "situacao-assinatura" : null,
+      "data-expiracao-servico" : null,
+      "senha-atendimento" : null,
+      "contrato" : {
+         "cliente" : {
+            "acrm-cliente-id" : null,
+            "tipo-cliente" : null,
+            "subtipo-cliente" : null,
+            "segmentacoes" : {
+               "segmentacao" : [ {
+                  "segmentacao-id" : "id segmentacao"
+               } ]
+            },
+            "crm-cliente-id" : null,
+            "mobile-cliente-id" : null,
+            "mobile-cliente-tipo" : null,
+            "mobile-cliente-subtipo" : null
+         }
+      },
+      "aparelho" : {
+         "msisdn" : "112213123"
+      },
+      "crm-assinante-id" : null,
+      "mobile-assinante-id" : null
+   }
+}

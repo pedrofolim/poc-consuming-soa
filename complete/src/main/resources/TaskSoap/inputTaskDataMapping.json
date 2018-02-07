@@ -12,7 +12,7 @@
 				},
 			"targetPort":
 				{
-					"path":"$.properties.symbol",
+					"path":"$.assinante.aparelho.msisdn",
 					"x":0,
 					"y":13
 			}

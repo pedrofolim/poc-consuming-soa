@@ -26,12 +26,12 @@
             <groupId>org.springframework.ws</groupId>
             <artifactId>spring-ws-core</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/org.eclipse.persistence.moxy -->
-		<dependency>
-		    <groupId>org.eclipse.persistence</groupId>
-		    <artifactId>org.eclipse.persistence.moxy</artifactId>
-		    <version>2.5.0</version>
-		</dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink -->
+       <dependency>
+           <groupId>org.eclipse.persistence</groupId>
+           <artifactId>eclipselink</artifactId>
+           <version>2.6.0</version>
+       </dependency>
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
@@ -69,26 +69,47 @@
             </plugin>
             <!-- tag::wsdl[] -->
             <plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.13.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <schemaLanguage>WSDL</schemaLanguage>
-                    <generatePackage>hello.wsdl</generatePackage>
-                    <schemas>
-                        <schema>
-                            <url>http://www.webservicex.com/stockquote.asmx?WSDL</url>
-                        </schema>
-                    </schemas>
-                </configuration>
-            </plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>build-helper-maven-plugin</artifactId>
+			    <version>1.9</version>
+			    <executions>
+			        <execution>
+			            <id>add-source</id>
+			            <phase>generate-sources</phase>
+			            <goals>
+			                <goal>add-source</goal>
+			            </goals>
+			            <configuration>
+			                <sources>
+			                    <source>${basedir}/target/generated/src/main/java</source>
+			                </sources>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+            <plugin>
+		        <groupId>org.codehaus.mojo</groupId>
+		        <artifactId>jaxws-maven-plugin</artifactId>
+		        <version>2.5</version>
+		        <executions>
+		          <execution>
+		            <goals>
+		              <goal>wsimport</goal>
+		            </goals>
+		            <!-- Following configuration will pass ${project.basedir}/src/remote-xjc/bindings.xjc and ${project.basedir}/src/jaxws/bindings-default.xjc to wsimport. -->
+		          </execution>
+		        </executions>
+		        <configuration>
+		            <bindingDirectory>${project.basedir}/src/main/resources</bindingDirectory>
+				    <bindingFiles>
+				        <bindingFile>bindings.xml</bindingFile>
+				    </bindingFiles>
+              		<sourceDestDir>${basedir}/target/generated-sources/main/java</sourceDestDir>
+		              <wsdlUrls>
+		                <wsdlUrl>http://brux0338:9200/esb/services/ConsultarUltimoAssinantev1?wsdl</wsdlUrl>
+		              </wsdlUrls>
+	            </configuration>
+      		</plugin>
             <!-- end::wsdl[] -->
         </plugins>
     </build>
